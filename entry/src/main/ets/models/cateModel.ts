@@ -29,3 +29,9 @@ export const cateModel: CateModel[] = [
     image: 'esportsLogo.png',
   }
 ]
+
+export const searchCateModel = (keyword: string): CateModel[] => {
+  return cateModel.filter(item =>
+  item.title.toLowerCase().includes(keyword.toLowerCase())
+  );
+};

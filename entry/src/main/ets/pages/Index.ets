@@ -5,13 +5,15 @@ import { ListComponent } from '../components/ListComponent';
 
 @Extend(Text) function mainStyle(){
   .fontSize(25)
-  .fontColor('#ff2fb8ee')
+  .fontColor('#ff2fb8') // Adjusted for better readability
   .width('100%')
-  .backgroundColor('#ffeeeb2f')
+  .backgroundColor('#ffeeeb') // Simplified color for better contrast
   .textAlign(TextAlign.Center)
-  .border({width: 2, color: '#fffcf7f6'})
+  .border({width: 2, color: '#fffcf7'}) // Simplified color for better contrast
   .fontWeight(FontWeight.Bold)
+  .padding('10px') // Added padding for better spacing
 }
+
 
 @Entry
 @Component
