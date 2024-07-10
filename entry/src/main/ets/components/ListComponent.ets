@@ -1,18 +1,27 @@
 import { ListModel, listModel } from '../models/listModel'
 import { router } from '@kit.ArkUI'
-
+import request from '../utils/request'
+import { ReqListModel } from '../models/requestModel'
+import { ParamsSearchModel } from '../models/paramsModel'
 import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh'
 
 @Component
 export struct ListComponent {
+  private scroller: Scroller = new Scroller()
+  @State listData: ListModel[] = listModel
+  @State cateName: string = ''
+  @State currPage: string = ''
   @Prop
   cateIndex: number
-  private scroller: Scroller = new Scroller()
+
+  @State
+  @Watch('refreshData')
+  searchResult: ListModel[] = []
 
   // 每页显示的条数
   private itemsPerPage: number = 5
   // 初始数据
-  @State data: ListModel[] = listModel.slice(0, this.itemsPerPage)
+  @State data: ListModel[] = this.listData
   // 当前页，初始值第一页
   private currentPage: number = 1
   // 计算共有多少页
@@ -34,12 +43,12 @@ export struct ListComponent {
         onRefresh: () => {
           return new Promise<string>((resolve) => {
             setTimeout(() => {
-              resolve('刷新成功')
-              this.data = listModel.slice(0, this.itemsPerPage)
+              this.data = this.listData.slice(0, this.itemsPerPage)
               // 页码复位
               this.currentPage = 1
               // 重新启动上拉加载
               this.refreshConfigurator.setHasLoadMore(true)
+              resolve('Refresh successfully')
             }, 2000)
           })
         },
@@ -50,11 +59,11 @@ export struct ListComponent {
               if (this.currentPage < this.totalPage) {
                 this.data = [
                   ...this.data,
-                  ...listModel.slice(this.itemsPerPage * this.currentPage, this.itemsPerPage * this.currentPage + this.itemsPerPage)
+                  ...this.listData.slice(this.itemsPerPage * this.currentPage, this.itemsPerPage * this.currentPage + this.itemsPerPage)
                 ]
                 this.currentPage++
               } else {
-                console.log('到底了~')
+                console.log('No more data')
                 // 第三步：设置不能继续上拉
                 this.refreshConfigurator.setHasLoadMore(false)
               }
@@ -121,5 +130,23 @@ export struct ListComponent {
     .backgroundColor('#fff')
     .scrollBar(BarState.Off)
     .edgeEffect(EdgeEffect.None)
+  }
+
+  async aboutToAppear() {
+    let params: ParamsSearchModel = router.getParams() as ParamsSearchModel
+    this.cateName = params.cateName
+    this.currPage = params.currPage
+
+    if (!params.searchResult) {
+      let result = await request.get<string, ReqListModel>('/list')
+      this.listData = this.data = result.data
+    } else {
+      this.listData = this.data = params.searchResult
+    }
+
+  }
+
+  refreshData() {
+    this.listData = this.data = this.searchResult
   }
 }
