@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/Details",
-    "pages/MinePage"
+    "pages/MinePage",
+    "pages/Favorites"
   ]
 }
