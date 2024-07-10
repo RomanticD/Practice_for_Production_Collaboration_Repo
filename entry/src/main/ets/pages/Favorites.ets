@@ -15,7 +15,7 @@ struct Favorites {
             .onClick(() => {
               router.back()
             })
-          Text('全部清除')
+          Text('Cancel all')
             .fontColor('#fff')
             .height('100%')
             .onClick(() => {
@@ -29,7 +29,7 @@ struct Favorites {
         .justifyContent(FlexAlign.SpaceBetween)
         .padding({left: 10, right: 10})
 
-        Text('我的收藏')
+        Text('My favorites')
           .width('100%').textAlign(TextAlign.Center)
           .fontSize(18).fontColor('#fff')
       }
@@ -53,6 +53,14 @@ struct Favorites {
               .padding({left: 10, right: 10})
               .backgroundColor('#fff')
             }
+            .onClick(() => {
+              router.pushUrl({
+                url: 'pages/Details',
+                params: {
+                  id: item.id
+                }
+              })
+            })
           }
         })
       }

@@ -1,11 +1,24 @@
-import { promptAction, router } from '@kit.ArkUI'
+import { promptAction, router, } from '@kit.ArkUI'
 import { ParamsModel } from '../models/paramsModel'
 import { ListModel, listModel } from '../models/listModel'
+import {ColorModel} from '../models/ColorModel'
 
 @Entry
 @Component
 struct Details {
   @State r: ListModel = {} as ListModel
+  @State currentColor: string = '#ee7700';
+  @State favorites: Array<string> = [];
+  @State buttonColor: Array<string> = [];
+  @State result: string[] = []
+
+  // 在页面渲染前，执行初始化逻辑
+  aboutToAppear(): void {
+    const params: ParamsModel = router.getParams() as ParamsModel
+    const result = listModel.find((item: ListModel) => item.id == params.id)
+    this.r = result as ListModel
+
+  }
 
   build() {
     Column() {
@@ -73,29 +86,28 @@ struct Details {
       .width(130).height(45)
       .type(ButtonType.Normal)
       .borderRadius(8)
-      .backgroundColor('#ee7700')
+      .backgroundColor(this.currentColor)
       .onClick(() => {
-        const ids: string[] = AppStorage.get('favorites') || []
-        const result = ids.find((id: string) => id == this.r.id)
+        const ids: string[] = AppStorage.get('favorites') || [];
+        const result = ids.find((id: string) => id == this.r.id);
         if (!result) {
-          AppStorage.setOrCreate('favorites', [...ids, this.r.id])
+          this.favorites = [...ids, this.r.id];
+          AppStorage.setOrCreate('favorites', this.favorites);
           promptAction.showToast({
             message: 'Like successfully'
-          })
+          });
+          this.currentColor = '#a9a9a9';
+          AppStorage.setOrCreate('buttonColor', this.currentColor);
         } else {
+          this.favorites = ids.filter((id: string) => id !== this.r.id);
+          AppStorage.setOrCreate('favorites', this.favorites);
           promptAction.showToast({
-            message: 'Have been liked'
-          })
+            message: 'Cancelled the like'
+          });
+          this.currentColor = '#ee7700';
+          AppStorage.setOrCreate('buttonColor', this.currentColor);
         }
       })
     }
-  }
-
-  // 在页面渲染前，能不能先执行一段逻辑
-  // 实现方法就是生命周期函数：aboutToAppear
-  aboutToAppear(): void {
-    const params: ParamsModel = router.getParams() as ParamsModel
-    const result = listModel.find((item: ListModel) => item.id == params.id)
-    this.r = result as ListModel
   }
 }
