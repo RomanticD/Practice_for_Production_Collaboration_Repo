@@ -43,7 +43,7 @@ struct Favorites {
           ListItem() {
             Column() {
               //Image(item.img)
-              //.width('100%')
+                //.width('100%')
               Row() {
                 Text(item.name).fontSize(18)
                 //Image($rawfile('like_fill.png')).width(24)
