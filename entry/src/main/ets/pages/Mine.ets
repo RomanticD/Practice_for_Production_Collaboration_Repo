@@ -1,7 +1,7 @@
 import { router } from '@kit.ArkUI'
 
 @Component
-export struct MineComponent {
+export struct Mine {
   @Builder
   itemBuilder(icon: string, title: string, top:number,callback: () => void) {
     Column() {

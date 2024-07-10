@@ -1,7 +1,7 @@
 import { promptAction, router, } from '@kit.ArkUI'
 import { ParamsModel } from '../models/paramsModel'
 import { ListModel, listModel } from '../models/listModel'
-import {ColorModel} from '../models/ColorModel'
+
 
 @Entry
 @Component

@@ -1,17 +1,16 @@
-import { router } from '@kit.ArkUI';
 import { tabsModel, TabsModel } from '../models/tabsModel'
 import { SportsComponent } from '../components/SportsComponent'
 import { ListComponent } from '../components/ListComponent';
-import { MineComponent } from '../components/MineComponent';
+import { Mine } from './Mine';
 
 @Extend(Text) function mainStyle(){
   .fontSize(25)
-  .fontColor('#ff2fb8') // Adjusted for better readability
+  .fontColor('#ff2fb8')
   .width('100%')
   .textAlign(TextAlign.Center)
-  .border({width: 2, color: '#fffcf7'}) // Simplified color for better contrast
+  .border({width: 2, color: '#fffcf7'})
   .fontWeight(FontWeight.Bold)
-  .padding('10px') // Added padding for better spacing
+  .padding('10px')
 }
 
 
@@ -62,7 +61,7 @@ struct homePage {
                 cateIndex: this.cateIndex
               })
             } else {
-              MineComponent()
+              Mine()
             }
           }.tabBar(this.tabBuilder(item, index))
         })

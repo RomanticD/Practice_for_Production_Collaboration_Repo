@@ -2,7 +2,6 @@
   "src": [
     "pages/Index",
     "pages/Details",
-    "pages/MinePage",
     "pages/Favorites"
   ]
 }
