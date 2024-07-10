@@ -8,7 +8,6 @@ import { MineComponent } from '../components/MineComponent';
   .fontSize(25)
   .fontColor('#ff2fb8') // Adjusted for better readability
   .width('100%')
-  .backgroundColor('#ffeeeb') // Simplified color for better contrast
   .textAlign(TextAlign.Center)
   .border({width: 2, color: '#fffcf7'}) // Simplified color for better contrast
   .fontWeight(FontWeight.Bold)

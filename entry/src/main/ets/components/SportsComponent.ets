@@ -166,11 +166,12 @@ export struct SportsComponent{
 
                   Column() {
                     Text(item.name).fontSize(20)
+                      .height(50)
+
                     Text(`Audience: ${item.audience}     Like: ${item.like}`)
-                      .fontSize(14).fontColor('#666')
-                      .margin({top: 10})
-                      .padding({bottom: 10})
+                      .fontSize(14).fontColor('#666').margin({bottom:10})
                   }
+                  .margin(10)
                   .backgroundColor('#fff')
                   .width('100%')
                   .height(70)

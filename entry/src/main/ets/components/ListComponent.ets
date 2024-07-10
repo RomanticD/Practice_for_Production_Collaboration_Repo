@@ -89,31 +89,39 @@ export struct ListComponent {
                   .width(50)
                   .padding(5)
                 Text(item.part1)
+                  .fontWeight(FontWeight.Bold)
               }
               .layoutWeight(2)
               Text('VS')
                 .textAlign(TextAlign.Center)
                 .layoutWeight(1)
+                .fontWeight(FontWeight.Bolder)
               Column(){
                 Image($rawfile(item.img2))
                   .height(50)
                   .width(50)
                   .padding(5)
                 Text(item.part2)
+                  .fontWeight(FontWeight.Bold)
               }
               .layoutWeight(2)
             }
+            .margin({bottom: 5})
             .height(75)
+
             Column() {
               Text(item.name).fontSize(20)
+                .height(50)
+
               Text(`Audience: ${item.audience}     Like: ${item.like}`)
-                .fontSize(14).fontColor('#666').margin({top: 3})
+                .fontSize(14).fontColor('#666').margin({bottom:10})
             }
             .backgroundColor('#fff')
             .width('100%')
             .height(60)
             .justifyContent(FlexAlign.Center)
             .borderRadius(6)
+            .margin(10)
           }
         }
         .onClick(() => {
