@@ -24,7 +24,7 @@ struct Details {
           router.back()
         })
 
-        Text(this.r.name)
+        Text(this.r.name.length < 15 ? this.r.name : this.r.name.slice(14,this.r.name.length - 1 ))
           .textAlign(TextAlign.Center)
           .height('100%').width('100%')
           .fontSize(18)
