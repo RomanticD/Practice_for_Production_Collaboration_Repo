@@ -2,6 +2,7 @@ import { router } from '@kit.ArkUI';
 import { tabsModel, TabsModel } from '../models/tabsModel'
 import { SportsComponent } from '../components/SportsComponent'
 import { ListComponent } from '../components/ListComponent';
+import { MineComponent } from '../components/MineComponent';
 
 @Extend(Text) function mainStyle(){
   .fontSize(25)
@@ -61,7 +62,7 @@ struct homePage {
                 cateIndex: this.cateIndex
               })
             } else {
-              Text(`tab${index+1}`)
+              MineComponent()
             }
           }.tabBar(this.tabBuilder(item, index))
         })
