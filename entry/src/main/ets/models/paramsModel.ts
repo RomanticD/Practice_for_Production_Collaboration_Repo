@@ -1,6 +1,7 @@
 import { CCTVListModel } from '../models/cctvListModel'
 
 export interface ParamsModel {
+  cate: string
   id: string | number
 }
 
