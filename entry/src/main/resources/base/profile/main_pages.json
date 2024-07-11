@@ -2,6 +2,7 @@
   "src": [
     "pages/Index",
     "pages/Details",
-    "pages/Favorites"
+    "pages/Favorites",
+    "pages/More"
   ]
 }

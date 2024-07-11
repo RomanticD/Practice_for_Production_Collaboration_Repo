@@ -1,4 +1,4 @@
-import { ListModel } from '../models/listModel'
+import { CCTVListModel } from '../models/cctvListModel'
 
 export interface ParamsModel {
   id: string
@@ -7,5 +7,5 @@ export interface ParamsModel {
 export interface ParamsSearchModel {
   cateName: string,
   currPage: string,
-  searchResult?: ListModel[]
+  searchResult?: CCTVListModel[]
 }
