@@ -1,6 +1,7 @@
 import { promptAction, router } from '@kit.ArkUI';
 import { ParamsModel } from '../models/paramsModel';
 import { ListModel, listModel } from '../models/listModel';
+import { SupportRateComponent } from '../components/SupportRate';
 
 @Entry
 @Component
@@ -79,6 +80,28 @@ struct Details {
 
       Text(this.r.name).fontSize(20).fontWeight(900).margin({ top: 30 });
       Text(`Audience: ${this.r.audience}     Like: ${this.r.like}`).fontColor('#999').margin({ top: 5, bottom: 30 });
+
+      /*
+       * 支持率显示区
+       */
+      Column() {
+        Row() {
+          Column() {
+            Text(this.r.part1+' Support Rate').fontSize(16).fontWeight(700).textAlign(TextAlign.Center);
+          }
+          .layoutWeight(1)
+          .padding(5);
+
+          Column() {
+            Text(this.r.part2+' Support Rate').fontSize(16).fontWeight(700).textAlign(TextAlign.Center);
+          }
+          .layoutWeight(1)
+          .padding(5);
+        }
+      }
+      .padding(10);
+      SupportRateComponent({});
+
       Button() {
         Text(this.isLiked ? "UnFavorite" : "Favorite").fontColor('#fff');
       }

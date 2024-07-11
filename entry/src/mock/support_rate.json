@@ -1,0 +1,4 @@
+{ "posts": [
+{"id": 1 ,"name": "Team A", "supportRate": 60},
+{"id": 2, "name": "Team B", "supportRate": 40}]
+}
