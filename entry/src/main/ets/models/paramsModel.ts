@@ -1,11 +1,12 @@
-import { ListModel } from '../models/listModel'
+import { CCTVListModel } from '../models/cctvListModel'
 
 export interface ParamsModel {
-  id: string
+  id: string | number
 }
 
 export interface ParamsSearchModel {
+  id: number
   cateName: string,
   currPage: string,
-  searchResult?: ListModel[]
+  searchResult?: CCTVListModel[]
 }

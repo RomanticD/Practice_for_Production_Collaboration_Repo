@@ -1,21 +1,27 @@
 import { ListModel, listModel } from '../models/listModel'
+import { CCTVListModel, cctvListModel } from '../models/cctvListModel'
 import { router } from '@kit.ArkUI'
 import request from '../utils/cctvRequest'
 import { RequestListModel } from '../models/requestModel'
 import { ParamsSearchModel } from '../models/paramsModel'
 import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh'
+import { DetailType } from '../utils/Help'
 
 @Component
-export struct ListComponent {
+export struct RequestComponent {
   private scroller: Scroller = new Scroller()
-  @State listData: ListModel[] = listModel
+  @State listData: CCTVListModel[] = cctvListModel
   @State cateName: string = ''
   @State currPage: string = ''
   @Prop cateIndex: number
 
+  @State
+  @Watch('refreshData')
+  searchResult: CCTVListModel[] = []
+
   private itemsPerPage: number = 5
 
-  @State data: ListModel[] = this.listData
+  @State data: CCTVListModel[] = this.listData
 
   private currentPage: number = 1
 
@@ -72,56 +78,25 @@ export struct ListComponent {
   @Builder
   listBuilder() {
     List({scroller: this.scroller}) {
-      ForEach(this.data, (item: ListModel) => {
+      ForEach(this.data, (item: CCTVListModel) => {
         ListItem() {
           Column() {
             Row(){
-              Column(){
-                Image($rawfile(item.img1))
-                  .height(50)
-                  .width(50)
-                  .padding(5)
-                Text(item.part1)
-                  .fontWeight(FontWeight.Bold)
-              }
-              .layoutWeight(2)
-              Text('VS')
-                .textAlign(TextAlign.Center)
-                .layoutWeight(1)
-                .fontWeight(FontWeight.Bolder)
-              Column(){
-                Image($rawfile(item.img2))
-                  .height(50)
-                  .width(50)
-                  .padding(5)
-                Text(item.part2)
-                  .fontWeight(FontWeight.Bold)
-              }
-              .layoutWeight(2)
+              Image(item.logoPath)
+                .height('100%')
+                .width(150)
+              Text(item.shortName)
+                .fontSize(30)
             }
             .margin({bottom: 5})
-            .height(75)
-
-            Column() {
-              Text(item.name).fontSize(20)
-                .height(50)
-
-              Text(`Audience: ${item.audience}     Like: ${item.like}`)
-                .fontSize(14).fontColor('#666').margin({bottom:10})
-            }
-            .backgroundColor('#fff')
-            .width('100%')
-            .height(60)
-            .justifyContent(FlexAlign.Center)
-            .borderRadius(6)
-            .margin(10)
+            .height(175)
           }
         }
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/Details',
+            url: 'pages/MoreDetails',
             params: {
-              id: item.id
+              id: item.id,
             }
           })
         })
@@ -131,5 +106,22 @@ export struct ListComponent {
     .backgroundColor('#fff')
     .scrollBar(BarState.Off)
     .edgeEffect(EdgeEffect.None)
+  }
+
+  async aboutToAppear() {
+    let params: ParamsSearchModel = router.getParams() as ParamsSearchModel
+    this.cateName = params.cateName
+    this.currPage = params.currPage
+
+    if (!params.searchResult) {
+      let result = await request.get<string, RequestListModel>('/cache/ef972bd6675867a16c8fd5c0b4597a56?ran=1720667588356')
+      this.listData = this.data = result.data
+    } else {
+      this.listData = this.data = params.searchResult
+    }
+  }
+
+  refreshData() {
+    this.listData = this.data = this.searchResult
   }
 }

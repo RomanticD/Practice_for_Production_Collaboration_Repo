@@ -3,8 +3,7 @@ import axios from '@ohos/axios'
 //创建axios的实例
 const instance = axios.create({
   // baseURL: "http://47.95.4.181", //基路径，要看API帮助文档的特征来确定基路径
-  // baseURL: 'http://localhost:9527/',
-  baseURL: 'http://localhost:3000/',
+  baseURL: 'https://cbs.sports.cctv.com/',
   timeout: 5000, //请求超时的时间
 })
 

@@ -1,18 +1,6 @@
-import { ListModel } from '../models/listModel'
-import { HotCateModel } from '../models/hotCateModel'
-import { CateModel } from '../models/cateModel'
+import { CCTVListModel } from '../models/cctvListModel'
 
-export interface ReqListModel {
+export interface RequestListModel{
   ret: boolean
-  data: ListModel[]
-}
-
-export interface  ReqHotCateModel {
-  ret: boolean,
-  data: HotCateModel[]
-}
-
-export interface ReqCateModel {
-  ret: boolean,
-  data: CateModel
+  data: CCTVListModel[]
 }

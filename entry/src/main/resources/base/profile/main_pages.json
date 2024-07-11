@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/Details",
     "pages/Favorites",
-    "pages/SearchPage"
+    "pages/More",
+    "pages/MoreDetails"
   ]
 }
