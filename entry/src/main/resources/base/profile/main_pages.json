@@ -3,7 +3,7 @@
     "pages/Index",
     "pages/Details",
     "pages/Favorites",
-    "pages/More",
-    "pages/MoreDetails"
+    "pages/SearchPage",
+    "pages/SportsPage"
   ]
 }
