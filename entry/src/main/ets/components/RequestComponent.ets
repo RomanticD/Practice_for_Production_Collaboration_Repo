@@ -83,11 +83,15 @@ export struct RequestComponent {
           Column() {
             Row(){
               Image(item.logoPath)
-                .height('100%')
-                .width(150)
+                .width(100)
+                .margin({ left: 50 })
+
               Text(item.shortName)
-                .fontSize(30)
+                .fontSize(24)
+                .margin({left:70})
             }
+            .align(Alignment.Center)
+            .justifyContent(FlexAlign.Center)
             .margin({bottom: 5})
             .height(175)
           }
