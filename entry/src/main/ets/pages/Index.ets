@@ -1,7 +1,7 @@
 import { tabsModel, TabsModel } from '../models/tabsModel'
 import { SportsComponent } from '../components/SportsComponent'
 import { ListComponent } from '../components/ListComponent';
-import { Mine } from './Mine';
+import { Mine } from '../pages/Mine'
 
 @Extend(Text) function mainStyle(){
   .fontSize(25)
