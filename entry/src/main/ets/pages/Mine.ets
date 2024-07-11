@@ -50,6 +50,11 @@ export struct Mine {
             url: 'pages/Favorites'
           })
         })
+        this.itemBuilder('more.png', 'more',20, () => {
+          router.pushUrl({
+            url: 'pages/More'
+          })
+        })
         this.itemBuilder('070_银行卡.png', 'bank card', 40, () => {})
         this.itemBuilder('070_设置.png', 'setting',40, () => {})
         this.itemBuilder('070_我的.png', 'mine',  40,() => {})
