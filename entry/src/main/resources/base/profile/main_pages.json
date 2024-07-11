@@ -4,6 +4,8 @@
     "pages/Details",
     "pages/Favorites",
     "pages/SearchPage",
-    "pages/SportsPage"
+    "pages/SportsPage",
+    "pages/MoreDetails",
+    "pages/More"
   ]
 }
