@@ -105,34 +105,27 @@ struct Details {
         SupportRateComponent({});
 
         Button() {
-          Text('Like').fontColor('#fff')
+          Text(this.isLiked ? "UnFavorite" : "Favorite").fontColor('#fff');
         }
         .width(130)
         .height(45)
         .type(ButtonType.Normal)
         .borderRadius(8)
-        .backgroundColor(this.currentColor)
+        .backgroundColor(this.isLiked ? '#999999' : '#ee7700')
         .onClick(() => {
-          const ids: string[] = AppStorage.get('favorites') || [];
-          const result = ids.find((id: string) => id == this.r.id);
-          if (!result) {
-            this.favorites = [...ids, this.r.id];
+          this.isLiked = !this.isLiked;
+          if (this.isLiked) {
+            this.favorites = [...this.favorites, this.r.id];
             AppStorage.setOrCreate('favorites', this.favorites);
-            promptAction.showToast({
-              message: 'Like successfully'
-            });
-            this.currentColor = '#a9a9a9';
-            AppStorage.setOrCreate('buttonColor', this.currentColor);
+            promptAction.showToast({ message: 'Like successfully' });
+            AppStorage.setOrCreate(`isLiked_${this.r.id}`, true);
           } else {
-            this.favorites = ids.filter((id: string) => id !== this.r.id);
+            this.favorites = this.favorites.filter((id: string) => id !== this.r.id);
             AppStorage.setOrCreate('favorites', this.favorites);
-            promptAction.showToast({
-              message: 'Cancelled the like'
-            });
-            this.currentColor = '#ee7700';
-            AppStorage.setOrCreate('buttonColor', this.currentColor);
+            promptAction.showToast({ message: 'Cancelled the like' });
+            AppStorage.setOrCreate(`isLiked_${this.r.id}`, false);
           }
-        })
+        });
       }
     }
 
