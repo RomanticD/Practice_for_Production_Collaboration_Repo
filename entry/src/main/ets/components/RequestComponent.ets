@@ -5,7 +5,6 @@ import request from '../utils/cctvRequest'
 import { RequestListModel } from '../models/requestModel'
 import { ParamsSearchModel } from '../models/paramsModel'
 import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh'
-import { DetailType } from '../utils/Help'
 
 @Component
 export struct RequestComponent {
