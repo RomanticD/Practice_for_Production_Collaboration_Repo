@@ -70,8 +70,15 @@ export struct SportsComponent{
             .onSubmit((enterKey: EnterKeyType) => {
               // this.submitData(new HistoryWordModel(0, this.currentInputBoxContent));
             })
-
-
+            .onClick(() => {
+              router.pushUrl({
+                url: 'pages/SearchPage',
+                params: {
+                  cateName: '',
+                  currPage: 'index'
+                }
+              })
+            })
         }
         .backgroundColor('#fff')
         // .border({width: 1, color: '#ee7700'})
