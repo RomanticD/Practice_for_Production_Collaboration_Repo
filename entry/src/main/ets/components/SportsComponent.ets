@@ -19,7 +19,6 @@ export struct SportsComponent{
   @State currentInputBoxContent: String = ""
   @State displayedCategories : CateModel[] = cateModel
   @State displayedMatches : ListModel[] = listModel
-
   build() {
     Column(){
       Swiper(){
@@ -85,43 +84,47 @@ export struct SportsComponent{
       .height(60)
       .padding(10)
 
-      Column(){
-        Text('Hot Categories')
-          .fontSize(20)
-          .fontColor('#000')
-          .width('100%')
-          .backgroundColor('#fff6c869')
-          .textAlign(TextAlign.Start)
-          .subTitleFontStyle()
+        Column() {
+          Text('Hot Categories')
+            .fontSize(20)
+            .fontColor('#000')
+            .width('100%')
+            .backgroundColor('#fff6c869')
+            .textAlign(TextAlign.Start)
+            .subTitleFontStyle()
 
-        Grid(){
-          ForEach(this.displayedCategories, (item: CateModel, index: number)=> {
-            GridItem(){
-              Column(){
-                Image($rawfile(item.image)).borderRadius(8)
-                  .width(30)
-                  .height(30)
-                  .margin({top: 4})
-                Text(item.title).margin({top: 2})
+          Grid() {
+            ForEach(this.displayedCategories, (item: CateModel, index: number) => {
+              GridItem() {
+                Column() {
+                  Image($rawfile(item.image)).borderRadius(8)
+                    .width(30)
+                    .height(30)
+                    .margin({ top: 4 })
+                  Text(item.title).margin({ top: 2 })
+                }
+                .backgroundColor('#fff')
+                .width(100)
+                .height(55)
+                .borderRadius(6)
               }
-              .backgroundColor('#fff')
-              .width(100)
-              .height(55)
-              .borderRadius(6)
-            }
-            .onClick(() => {
-              this.cateIndex = index
-              this.controller.changeIndex(1)
+              .onClick(() => {
+                router.pushUrl({
+                  url: 'pages/SportsPage',
+                  params: {
+                    cate: item.title.toLowerCase()
+                  }
+                })
+              })
             })
-          })
-        }
-        .margin({top: 10})
-        .columnsTemplate('1fr 1fr 1fr')
-        .rowsGap(10)
-        .columnsGap(10)
-        .padding({left: 10, right: 10})
-        .width('100%')
-        .height(130)
+          }
+          .margin({ top: 10 })
+          .columnsTemplate('1fr 1fr 1fr')
+          .rowsGap(10)
+          .columnsGap(10)
+          .padding({ left: 10, right: 10 })
+          .width('100%')
+          .height(130)
 
         Text('Hot Matches')
           .fontSize(20)

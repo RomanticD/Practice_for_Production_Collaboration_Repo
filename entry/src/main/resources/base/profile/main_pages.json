@@ -3,6 +3,7 @@
     "pages/Index",
     "pages/Details",
     "pages/MinePage",
-    "pages/Favorites"
+    "pages/Favorites",
+    "pages/SportsPage"
   ]
 }
