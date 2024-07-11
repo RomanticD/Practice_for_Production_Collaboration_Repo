@@ -11,6 +11,7 @@ export interface CCTVListModel {
   logoPath: string
   keywords: string
   itemName: string
+  tabList: TabList[]
   [props: string]: number | string | TabList[]
 }
 

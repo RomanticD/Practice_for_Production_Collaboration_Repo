@@ -5,6 +5,7 @@ import request from '../utils/request'
 import { RequestListModel } from '../models/requestModel'
 import { ParamsSearchModel } from '../models/paramsModel'
 import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh'
+import { DetailType } from '../utils/Help'
 
 @Component
 export struct RequestComponent {
@@ -93,9 +94,10 @@ export struct RequestComponent {
         }
         .onClick(() => {
           router.pushUrl({
-            url: 'pages/Details',
+            url: 'pages/MoreDetails',
             params: {
-              id: item.id
+              id: item.id,
+              from: DetailType.FromMore
             }
           })
         })

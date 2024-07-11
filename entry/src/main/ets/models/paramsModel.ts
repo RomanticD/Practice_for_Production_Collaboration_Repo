@@ -1,7 +1,7 @@
 import { CCTVListModel } from '../models/cctvListModel'
 
 export interface ParamsModel {
-  id: string
+  id: string | number
 }
 
 export interface ParamsSearchModel {

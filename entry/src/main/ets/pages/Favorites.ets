@@ -1,5 +1,6 @@
 import { promptAction, router } from '@kit.ArkUI'
 import { ListModel, listModel } from '../models/listModel'
+import { DetailType } from '../utils/Help'
 
 @Entry
 @Component
@@ -58,7 +59,8 @@ struct Favorites {
               router.pushUrl({
                 url: 'pages/Details',
                 params: {
-                  id: item.id
+                  id: item.id,
+                  type: DetailType.FromMore
                 }
               })
             })
