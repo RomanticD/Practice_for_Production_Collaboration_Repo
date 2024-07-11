@@ -1,7 +1,7 @@
 import { ListModel, listModel } from '../models/listModel'
 import { CCTVListModel, cctvListModel } from '../models/cctvListModel'
 import { router } from '@kit.ArkUI'
-import request from '../utils/request'
+import request from '../utils/cctvRequest'
 import { RequestListModel } from '../models/requestModel'
 import { ParamsSearchModel } from '../models/paramsModel'
 import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh'
@@ -97,7 +97,6 @@ export struct RequestComponent {
             url: 'pages/MoreDetails',
             params: {
               id: item.id,
-              from: DetailType.FromMore
             }
           })
         })

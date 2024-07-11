@@ -5,6 +5,7 @@ export interface ParamsModel {
 }
 
 export interface ParamsSearchModel {
+  id: number
   cateName: string,
   currPage: string,
   searchResult?: CCTVListModel[]

@@ -1,6 +1,6 @@
 import { ListModel, listModel } from '../models/listModel'
 import { router } from '@kit.ArkUI'
-import request from '../utils/request'
+import request from '../utils/cctvRequest'
 import { RequestListModel } from '../models/requestModel'
 import { ParamsSearchModel } from '../models/paramsModel'
 import { PullToRefresh, PullToRefreshConfigurator } from '@ohos/pulltorefresh'

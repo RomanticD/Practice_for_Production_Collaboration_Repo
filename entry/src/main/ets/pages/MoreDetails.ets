@@ -1,6 +1,6 @@
 import { CCTVListModel, cctvListModel } from '../models/cctvListModel'
 import { router } from '@kit.ArkUI'
-import request from '../utils/request'
+import request from '../utils/cctvRequest'
 import { RequestListModel } from '../models/requestModel'
 import { ParamsSearchModel } from '../models/paramsModel'
 
@@ -12,11 +12,9 @@ export struct MoreDetails {
   @State cateName: string = ''
   @State currPage: string = ''
   @State r: CCTVListModel = {} as CCTVListModel;
-
   @State
   @Watch('refreshData')
   searchResult: CCTVListModel[] = []
-
   @State data: CCTVListModel[] = this.listData
 
   build() {
@@ -44,25 +42,29 @@ export struct MoreDetails {
       .backgroundColor('#ee7700')
       .width('100%')
 
+      Text(this.r.tabList[0].url)
+
       Image(this.r.tabList[0].url)
         .width('100%')
-        .height(400)
+        .height(500)
     }.width('100%')
   }
 
   async aboutToAppear() {
     let params: ParamsSearchModel = router.getParams() as ParamsSearchModel
+    this.r = this.listData.find((item) => item.id == params.id) as CCTVListModel;
+
     this.cateName = params.cateName
     this.currPage = params.currPage
 
     if (!params.searchResult) {
-      let result = await request.get<string, RequestListModel>('/cache/ef972bd6675867a16c8fd5c0b4597a56?ran=1720667588356')
+      let result =
+        await request.get<string, RequestListModel>('/cache/ef972bd6675867a16c8fd5c0b4597a56?ran=1720667588356')
       this.listData = this.data = result.data
     } else {
       this.listData = this.data = params.searchResult
     }
   }
-
   refreshData() {
     this.listData = this.data = this.searchResult
   }
