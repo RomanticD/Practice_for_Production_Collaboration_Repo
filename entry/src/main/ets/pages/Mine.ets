@@ -26,7 +26,6 @@ export struct Mine {
     .width('100%')
     .alignItems(HorizontalAlign.Start)
     .backgroundColor('#fff')
-    .margin({top})
   }
 
   build() {
@@ -44,6 +43,8 @@ export struct Mine {
         .borderWidth(12)
         .borderColor(Color.Orange)
         .borderRadius(56)
+        .margin(10)
+        .padding(20)
 
         this.itemBuilder('070_喜欢.png', 'like',20, () => {
           router.pushUrl({
