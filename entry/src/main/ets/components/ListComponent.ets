@@ -11,23 +11,20 @@ export struct ListComponent {
   @State listData: ListModel[] = listModel
   @State cateName: string = ''
   @State currPage: string = ''
-  @Prop
-  cateIndex: number
+  @Prop cateIndex: number
 
   @State
   @Watch('refreshData')
   searchResult: ListModel[] = []
 
-  // 每页显示的条数
   private itemsPerPage: number = 5
-  // 初始数据
+
   @State data: ListModel[] = this.listData
-  // 当前页，初始值第一页
+
   private currentPage: number = 1
-  // 计算共有多少页
+
   private totalPage: number = Math.ceil(listModel.length/this.itemsPerPage)
 
-  // 第一步：实例化 PullToRefreshConfigurator
   private refreshConfigurator: PullToRefreshConfigurator = new PullToRefreshConfigurator()
 
   build() {

@@ -1,7 +1,7 @@
 import { router } from '@kit.ArkUI'
 
 @Component
-export struct MineComponent {
+export struct Mine {
   @Builder
   itemBuilder(icon: string, title: string, top:number,callback: () => void) {
     Column() {
@@ -26,7 +26,6 @@ export struct MineComponent {
     .width('100%')
     .alignItems(HorizontalAlign.Start)
     .backgroundColor('#fff')
-    .margin({top})
   }
 
   build() {
@@ -44,6 +43,8 @@ export struct MineComponent {
         .borderWidth(12)
         .borderColor(Color.Orange)
         .borderRadius(56)
+        .margin(10)
+        .padding(20)
 
         this.itemBuilder('070_喜欢.png', 'like',20, () => {
           router.pushUrl({

@@ -22,8 +22,8 @@ export const listModel: ListModel[] = [
     cate: 'football',
     part1: 'Spain',
     part2: 'Germany',
-    audience: 45678,
-    like: 1234
+    audience: 43289,
+    like: 142183
   },
   {
     name: 'UEFA Euro 2024 France vs Portugal',
